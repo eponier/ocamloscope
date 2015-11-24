@@ -4,18 +4,17 @@ Installation
 Required softwares
 ---------------------------
 
-* OCaml 4.02.1 (Code is highly dependent on the specific compiler version. Do not try compiling with other versions.)
-* OPAM.1.2.0, findlib and OMake to build.
-* spotlib.2.5.2
-* ppx_meta_conv.2.0.1
-* ppx_orakuda.2.0.0 (OPAM name is orakuda.2.0.0)
-* treeprint.2.0.0
-* levenshtein.1.1.0
-* ppx_test.1.1.0
-* ocsigenserver.2.5
-* eliom.4.1.0
+* OCaml 4.02.3 (Code is highly dependent on the specific compiler version. Do not try compiling with other versions.)
+* OPAM >= 1.2, findlib and OMake to build.
+* spotlib >= 2.5.2
+* ppx_meta_conv >= 2.2
+* ppx_orakuda >= 2.0.0
+* treeprint >= 2.0.0 (2.1 is better, avoid the hack below)
+* levenshtein >= 1.1.0
+* ppx_test >= 1.2.1
+* ocsigenserver >= 2.6
+* eliom >= 4.2.0
 
-These packages should be available soon in the OPAM repository. 
 Windows is not supported.
 
 OPAM package for OCamlOScope is not yet available... since it requires the following mending of external softwares.
@@ -23,7 +22,7 @@ OPAM package for OCamlOScope is not yet available... since it requires the follo
 Missing `cmxs` files
 ---------------------------
 
-Some of the above packages lack `cmxs` files and you have to build them manually to run OCamlOScope on Ocsigen:
+Some of the above packages lack `cmxs` files and you have to build them manually to run the native build of OCamlOScope on Ocsigen. This is not needed at all if you use only bytecode.
 
 ### `ocamlcommon.cmxs` is missing in OCaml 4.02.1.
 
@@ -72,6 +71,8 @@ The following command should scrape the OCaml compiler source code and all the i
 $ ./oco -d -c <ocaml compiler source dir>
 ```
 
+NB: I do not really understand what is `<ocaml compiler source dir>` and why it is needed (indeed, if the switch is installed with the two flags given above, there is a directory `ocaml` in `build`).
+
 How to query locally
 ---------------------------
 
@@ -80,7 +81,7 @@ After scraping, `oco` goes to its console query mode against the dumped data fil
 How to start Eliom server
 ---------------------------------
 
-Change directory to `eliom/`, copy `eliom/oco.conf.in` to `oco.conf` and change `@PORT@`, `@OCAMLLIB@` and `@OCAMLSRC@`, then:
+Change directory to `eliom/`, copy `eliom/oco.conf.in` to `oco.conf` and change `@PORT@` and `@OCAMLLIB@`. You must also create a file called `oco_conf.ml` containing something of the form `{ocamlc_source_dir = "<ocaml compiler source dir>"`. I assume that this parameter is the same as the one used in the command line above.
 
 ```shell
 $ ./starteliom.sh
