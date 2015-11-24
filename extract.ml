@@ -251,7 +251,7 @@ and structure_item env path ty_env sitem =
       let ts2 = ty_signature env !!!(sitem.str_env) mexp.mod_loc path sg in
       (* CR jfuruse: loc information must be fixed as included *)
       restrict ~by:ts2 ts1
-  | Tstr_typext _ |  Tstr_attribute _ -> assert false (* CR jfuruse: not yet *)
+  | Tstr_typext _ |  Tstr_attribute _ -> env, [] (* assert false (* CR jfuruse: not yet *) *)
 
 and signature env path sg =
   fold_left (fun (env,st) i ->
@@ -345,7 +345,7 @@ and signature_item env path sgitem = match sgitem.sig_desc with
       in
       env,
       concat_map (class_type_declaration env path) cltys
-  | (Tsig_typext _|Tsig_attribute _) -> assert false (* CR jfuruse: not yet *)
+  | (Tsig_typext _|Tsig_attribute _) -> env, [] (* assert false (* CR jfuruse: not yet *) *)
  
 and ty_signature_item env ty_env loc path sgitem = 
   let open Types in
@@ -613,7 +613,7 @@ and ty_class_signature env loc path csig =
 and class_type_field env path ctfield =
     let loc = ctfield.ctf_loc in
     match ctfield.ctf_desc with
-    | Tctf_attribute _ -> assert false (* CR jfuruse: not yet *)
+    | Tctf_attribute _ -> [] (* assert false (* CR jfuruse: not yet *) *)
     | Tctf_inherit clty -> class_type env path clty
     | Tctf_val (name, _mutable_flag, virtual_flag, core_type) ->
         (* CR jfuruse: mutable flag is thrown away *)
