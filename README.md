@@ -19,6 +19,11 @@ Windows is not supported.
 
 OPAM package for OCamlOScope is not yet available... since it requires the following mending of external softwares.
 
+Hack
+---------------------------
+treeprint.2.0.0 needs ppx_ocaml_conv to compile, but it is now named ppx_meta_conv_ocaml. You have to build it manually with `opam source treeprint`, then `ocaml setup.ml -{configure,build,install}"`.
+treeprint.2.1 should no longer be concerned.
+
 Missing `cmxs` files
 ---------------------------
 
