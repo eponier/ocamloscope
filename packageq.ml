@@ -4,16 +4,18 @@ open List
 
 type t =
   | Exclude of string (** -spotlib *)
+  | Only of string (** +spotlib *)
 
 let to_string = function
   | Exclude s -> "-" ^ s
+  | Only s -> "+" ^ s
 
 let parse s =
   match s with
   | "" -> None
   | _ -> Option.do_;
-      res <-- (s =~ {m|-([A-Za-z.0-9_-]+)|m});
-      return & Exclude res#_1
+      res <-- (s =~ {m|(-|\+)([A-Za-z.0-9_-]+)|m});
+      return & (if res#_1 = "-" then Exclude res#_2 else Only res#_2)
 
 let parse_query s =
   let tokens = String.split (function ' ' | '\t' -> true | _ -> false) s in
@@ -26,6 +28,7 @@ let parse_query s =
 let compile q =
   let match_ = OCamlFind.Packages.cached_match in
   let exclude s = let m = match_ s in fun t -> not (m t) in
+  let only s = let m = match_ s in fun t -> m t in
   let ands ms = fun t -> for_all (fun m -> m t) ms in
-  ands & map (function | Exclude s -> exclude s) q
+  ands & map (function | Exclude s -> exclude s | Only s -> only s) q
 

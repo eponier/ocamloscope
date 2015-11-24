@@ -1,5 +1,6 @@
 type t =
   | Exclude of string (** -spotlib *)
+  | Only of string
 
 val to_string : t -> string
 
