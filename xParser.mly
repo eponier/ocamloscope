@@ -374,6 +374,7 @@ let mkctf_attrs d attrs =
 %token MUTABLE
 %token <nativeint> NATIVEINT
 %token NEW
+%token NONREC
 %token OBJECT
 %token OF
 %token OPEN
@@ -395,6 +396,7 @@ let mkctf_attrs d attrs =
 %token SEMI
 %token SEMISEMI
 %token SHARP
+%token <string> SHARPOP
 %token SIG
 %token STAR
 %token <string * string option> STRING
@@ -413,6 +415,7 @@ let mkctf_attrs d attrs =
 %token WHILE
 %token WITH
 %token <string * Location.t> COMMENT
+%token <Docstrings.docstring> DOCSTRING
 
 %token EOL
 

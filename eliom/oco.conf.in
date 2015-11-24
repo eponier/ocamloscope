@@ -17,9 +17,8 @@
     <extension findlib-package="spotlib"/>
     <extension findlib-package="findlib"/>
     <extension findlib-package="treeprint"/>
-    <extension findlib-package="orakuda"/>
-    <extension findlib-package="tiny_json_conv"/>
-    <extension findlib-package="xml_conv"/>
+    <extension findlib-package="ppx_orakuda"/>
+    <extension findlib-package="ppx_meta_conv"/>
     <extension findlib-package="levenshtein"/>
     <!-- ocamldoc has no META -->
     <extension module="@OCAMLLIB@/ocamldoc/odoc_info.cma"/>
@@ -30,11 +29,8 @@
       <static dir="local/var/www/oco/eliom" />
       <eliommodule module="../oco.cma" />
       <eliommodule module="ocoeliom.cma">
-	<record>
-	   <ocamlc_source_dir>@OCAMLSRC@</ocamlc_source_dir>
-	</record>
       </eliommodule>
-      <eliom/>
+      <eliom/> <!-- dont know why but we need this -->
     </host>
   </server>
 </ocsigen>
