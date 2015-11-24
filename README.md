@@ -81,7 +81,7 @@ After scraping, `oco` goes to its console query mode against the dumped data fil
 How to start Eliom server
 ---------------------------------
 
-Change directory to `eliom/`, copy `eliom/oco.conf.in` to `oco.conf` and change `@PORT@` and `@OCAMLLIB@`. You must also create a file called `oco_conf.ml` containing something of the form `{ocamlc_source_dir = "<ocaml compiler source dir>"`. I assume that this parameter is the same as the one used in the command line above.
+Change directory to `eliom/`, copy `eliom/oco.conf.in` to `oco.conf` and change `@PORT@` and `@OCAMLLIB@`. You must also create a file called `oco_conf.ml` containing something of the form `{ocamlc_source_dir = "<ocaml compiler source dir>"}`. I assume that this parameter is the same as the one used in the command line above.
 
 ```shell
 $ ./starteliom.sh
