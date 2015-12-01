@@ -4,6 +4,12 @@ open ElMisc
 
 let service = ElServices.Search.service
 
+let rule =
+    div_class "rule"
+      [ h2 [ !$ "Rule" ];
+        p [ !$ "`!`? `keyword`? (`name` `:`)? `type` (`+`|`-`)`package`" ]
+      ]
+
 let hlink_index es =
   a ~service es None
 
@@ -39,7 +45,7 @@ let index = Lwt.return
   & body & [ oco_logo
            ; oco_form None
            ; div_class "center400" 
-               [ examples
+               [ rule; examples
                ; p_class "help" [ ElServices.Packages.a [ !$ "Packages" ] ()
                                 ; !$ " "; issues ] 
                ]
