@@ -76,6 +76,7 @@ type groups =
 
 let found f qs q search_time group_time cache_hit_status gs page ~size =
   status (List.length gs) size search_time group_time cache_hit_status qs
+  :: p [ queries qs ]
   :: ElPager.pager 
          ~item:f
          ~here:(fun n -> div_class "here" [ !$ (string_of_int n) ])
